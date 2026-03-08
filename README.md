@@ -24,23 +24,16 @@ churn_prediction/
 ├── data/               # Data directory
 ├── models/             # Saved models
 ├── src/                # Source code
-├── api/                # Flask API
+├── api/                # FastAPI
 ├── train.py            # Training script
 ├── inference.py        # Inference script
 └── requirements.txt    # Dependencies
 ```
 
 
-## you can use the prduction URL direct:
-for Backend `https://eatask-production.up.railway.app/`
-
-for Frontend `https://ea-task-frontend.vercel.app/`
-
 # 🚀 Setup & Installation
 ## 1. Prerequisites
 Python 3.9+
-
-Groq API Key (for the chatbot feature)
 
 ## 2. Clone the Repository
 Bash
@@ -82,18 +75,12 @@ python train.py
 * Save the trained artifacts
 
 
-## Step 2: Configure Environment: Create a `.env` file in the root directory and add your API key:
-
-```bash
-GROQ_API_KEY=your_api_key_here
-```
-
-## Step 3: Start the API Server
+## Step 2: Start the API Server
 
 Once training is complete, start the FastAPI server:
 
 ```bash
-gunicorn api.app:app
+uvicorn api.app:app --reload
 ```
 The server will start at:
 ```bash
@@ -105,7 +92,7 @@ http://127.0.0.1:8000
 
 1. Health Check
 
-URL: ```GET /health```
+URL: ```GET /```
 Description: Checks if the API is running and the model is loaded.
 
 2. Predict Sales
@@ -141,32 +128,7 @@ c
 
 ```
 
-3. Chat Agent
-
-URL: ```POST /chat```
-Description: Interacts with the LLM to gather data and trigger predictions conversationally.
-
-4. Clear History
-
-URL: ```POST /chat/reset```
-Description: Clears the conversation history for a specific session ID, allowing you to start fresh with a new customer.
-
-For Example
-```JSON
-
-{
-  "session_id": "550e8400-e29b-41d4-a716-446655440000"
-}
-```
-
 ## 📊 Key Features
-### ✅ Conversational AI
-Smart extraction of customer details from natural text.
-
-Asks clarification questions for missing data.
-
-Generates business-friendly risk reports.
-
 ### ✅ Advanced Ensemble Modeling
 Combines Gradient Boosting, Logistic Regression, and AdaBoost.
 
