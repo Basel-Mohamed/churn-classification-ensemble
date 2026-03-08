@@ -1,4 +1,4 @@
-Customer Churn Prediction
+# Customer Churn Prediction
 Base URL: ```http://127.0.0.1:5000``` (Local) / ```https://churn-classification-ensemble.vercel.app``` (Production)
 
 This API provides endpoints for:
