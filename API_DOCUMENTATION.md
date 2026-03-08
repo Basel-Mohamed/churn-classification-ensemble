@@ -1,5 +1,5 @@
-# e& Customer Churn Prediction & Chatbot API
-Base URL: ```http://127.0.0.1:5000``` (Local) / ```https://eatask-production.up.railway.app``` (Production)
+Customer Churn Prediction
+Base URL: ```http://127.0.0.1:5000``` (Local) / ```https://churn-classification-ensemble.vercel.app``` (Production)
 
 This API provides endpoints for:
 
