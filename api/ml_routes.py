@@ -24,7 +24,7 @@ except Exception as e:
     print(f"Warning: Could not load model - {str(e)}")
 
 
-@router.get("/health")
+@router.get("/")
 async def health_check():
     """
     Health check endpoint to verify API uptime and model status.
