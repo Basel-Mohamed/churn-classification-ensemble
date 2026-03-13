@@ -28,7 +28,7 @@ sessions: Dict[str, Dict[str, Any]] = {}
 
 # The complete list of features required by the ML model to make a prediction
 REQUIRED_FIELDS = [
-    "customerID", "gender", "Senior_Citizen", "Is_Married", "Dependents",
+    "gender", "Senior_Citizen", "Is_Married", "Dependents",
     "tenure", "Phone_Service", "Dual", "Internet_Service", "Online_Security",
     "Online_Backup", "Device_Protection", "Tech_Support", "Streaming_TV",
     "Streaming_Movies", "Contract", "Paperless_Billing", "Payment_Method",
@@ -162,7 +162,8 @@ async def chat(request: ChatRequest):
                     "status": "success",
                     "response": final_text,
                     "session_id": session_id,
-                    "prediction_data": formatted
+                    "prediction_data": formatted,
+                    "extracted_data": session["extracted_data"] # <--- ADDED: Syncs UI on final response
                 }
                 
             except ValueError as ve:
@@ -173,11 +174,12 @@ async def chat(request: ChatRequest):
                     "session_id": session_id
                 }
 
-        # If data is still missing, return the LLM's follow-up question
+        # If data is still missing, return the LLM's follow-up question AND the extracted data
         return {
             "status": "success",
             "response": agent_reply,
-            "session_id": session_id
+            "session_id": session_id,
+            "extracted_data": session["extracted_data"] # <--- ADDED: Progressively syncs UI during chat
         }
 
     except Exception as e:
